@@ -45,3 +45,5 @@ jobs:
       - name: Logout of amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+  
