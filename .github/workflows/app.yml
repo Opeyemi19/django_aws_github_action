@@ -1,4 +1,4 @@
-name: Django Tests Automation with GitHub Action
+name: Django Tests Automation with GitHub Action on AWS
 
 on:
   push:
