@@ -20,7 +20,7 @@ on:
         description: Make a choice
         required: True
         options:
-          - ${{ env.afterBuild }}
+          - '${{ env.afterBuild }}'
           - bar
           - baz
 
