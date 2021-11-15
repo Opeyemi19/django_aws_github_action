@@ -16,9 +16,17 @@ on:
         type: choice
         description: Make a choice
         required: True
-        options:
-          - github.run_number
-          
+        options: {{ github.run_number }}
+
+    outputs:
+      random-number:
+        description: "Random number"
+        value: ${{ steps.random-number-generator.outputs.random-id }}
+
+    # outputs:
+    #   mapping:
+    #     description: Mapping Output
+    #     value: ${{ github.run_number }}
 
 
 jobs:
