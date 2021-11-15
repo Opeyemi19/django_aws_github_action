@@ -17,9 +17,9 @@ on:
         description: Make a choice
         required: True
         options:
-          - $github.run_number
-          - bar
-          - baz
+          run: |
+           echo "- ${{ github.run_number }}"
+          
 
 
 jobs:
