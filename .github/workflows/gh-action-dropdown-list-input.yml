@@ -1,9 +1,6 @@
 name: gh-action-dropdown-list-input
 
 
-env:
-  afterBuild: ${{ github.run_number }}
-
 on:
   workflow_dispatch:
     inputs:
@@ -20,7 +17,7 @@ on:
         description: Make a choice
         required: True
         options:
-          - '${{ env.afterBuild }}'
+          - $github.run_number
           - bar
           - baz
 
