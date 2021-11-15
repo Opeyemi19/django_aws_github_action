@@ -7,16 +7,19 @@ on:
         description: 'Environment'
         required: true
         default: 'dev,staging,[uat],prod'
-    boolean:
+      boolean:
         type: boolean
         description: True or False
-    choice:
-      type: choice
-      description: Make a choice
-      options:
-      - foo
-      - bar
-      - baz
+        required: True
+      choice:
+        type: choice
+        description: Make a choice
+        required: True
+        options:
+          - foo
+          - bar
+          - baz
+
 
 jobs:
   build:
