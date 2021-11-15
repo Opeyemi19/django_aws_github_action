@@ -16,12 +16,13 @@ on:
         type: choice
         description: Make a choice
         required: True
-        options: ${{ github.run_number }}
+        options: 
+          - {{ github.run_number }}
 
-    outputs:
-      mapping:
-        description: Mapping Output
-        value: ${{ github.run_number }}
+    # outputs:
+    #   mapping:
+    #     description: Mapping Output
+    #     value: ${{ github.run_number }}
 
 
 jobs:
