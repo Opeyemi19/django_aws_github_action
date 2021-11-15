@@ -17,8 +17,7 @@ on:
         description: Make a choice
         required: True
         options:
-          run: |
-           echo "- ${{ github.run_number }}"
+          - `${{ github.run_number }}`
           
 
 
