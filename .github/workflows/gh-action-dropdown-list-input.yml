@@ -17,7 +17,7 @@ on:
         description: Make a choice
         required: True
         options:
-          - `${{ github.run_number }}`
+          - github.run_number
           
 
 
