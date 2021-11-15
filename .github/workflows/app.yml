@@ -1,16 +1,17 @@
 name: Django Tests Automation with GitHub Action on AWS
 
 on:
-  push:
-    branches:
-      - main
-      - master
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  #     - master
 
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
-      - master
+  # pull_request:
+  #   types: [opened, synchronize, reopened]
+  #   branches:
+  #     - main
+  #     - master
 
 jobs:
   test:

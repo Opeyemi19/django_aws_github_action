@@ -1,0 +1,16 @@
+name: gh-action-dropdown-list-input
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev,staging,[uat],prod'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Print environment
+       run: echo ${{ github.event.inputs.environment }}
