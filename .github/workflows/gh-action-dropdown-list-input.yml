@@ -19,10 +19,10 @@ on:
         options: 
           - {{ github.run_number }}
 
-#     outputs:
-#       mapping:
-#         description: Mapping Output
-#         value: ${{ github.run_number }}
+    outputs:
+      mapping:
+        description: Mapping Output
+        value: ${{ github.run_number }}
 
 
 jobs:
