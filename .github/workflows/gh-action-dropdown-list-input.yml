@@ -17,12 +17,23 @@ on:
         description: Make a choice
         required: True
         options: 
-          - {{ github.run_number }}
+          - [[ "${{ github.run_number }}" ]]
 
     outputs:
-      mapping:
-        description: Mapping Output
-        value: ${{ github.run_number }}
+      summary-title:
+        description:
+          'The title of the code metrics action.'
+      summary-details:
+        description:
+          'A detailed summary of all the projects that were flagged.'
+      updated-metrics:
+        description:
+          'A boolean value, indicating whether or not the action updated metrics.'
+
+    # outputs:
+    #   mapping:
+    #     description: Mapping Output
+    #     value: ${{ github.run_number }}
 
 
 jobs:
