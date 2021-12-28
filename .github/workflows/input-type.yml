@@ -21,7 +21,7 @@ on:
         type: environment
         required: true
         description: different environment
-        default: 'dev,staging,[uat],prod'
+        default: 'dev,staging,[uat],prod
 
 jobs:
   greet:
