@@ -8,8 +8,9 @@ on:
         required: true
         description: Who to greet
         options: 
-        - monalisa
-        - cschleiden
+          - monalisa
+          - cschleiden
+          - sodikk
       message:
         required: true
         description: Yeahhh
@@ -24,23 +25,19 @@ on:
       
 jobs:
   greet:
+    if: github.event.inputs.name == 'cschleiden'
     runs-on: ubuntu-latest
     # if: ${{ github.event.inputs.name }} == 'cschleiden'
-    
+    # if: contains('${{ github.event.inputs.name }}', 'cschleiden') == 'true'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - if: contains('${{ github.event.inputs.name }}', 'cschleiden') == 'true'
       - name: Send greeting
         run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
 
   greeting:
+    if: github.event.inputs.name == 'monalisa'
     runs-on: ubuntu-latest
     # if: ${{ github.event.inputs.name }} == 'monalisa'
-    
+    # if: contains('${{ github.event.inputs.name }}' == 'monalisa') == 'true'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - if: contains('${{ github.event.inputs.name }}' == 'monalisa') == 'true'
       - name: Send greeting
         run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
