@@ -21,7 +21,7 @@ on:
       #   type: environment
       #   required: true
       #   description: different environment
-
+      
 jobs:
   greet:
     runs-on: ubuntu-latest
