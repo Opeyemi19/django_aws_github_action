@@ -18,10 +18,10 @@ jobs:
     name: Lint and build
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     language: [ 'python' ]
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'TypeScript' ]
         # Learn more:
         # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
@@ -46,16 +46,16 @@ jobs:
           aws-region: us-east-1
 
       # Initializes the CodeQL tools for scanning.
-      # - name: Initialize CodeQL
-      #   uses: github/codeql-action/init@v1
-      #   with:
-      #     languages: ${{ matrix.language }}
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
 
-      # - name: Autobuild
-      #   uses: github/codeql-action/autobuild@v1
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v1
 
-      # - name: Perform CodeQL Analysis
-      #   uses: github/codeql-action/analyze@v1
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -77,14 +77,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: "os,library"
           severity: "CRITICAL,HIGH"
-          format: "template"
-          template: "@/contrib/sarif.tpl"
-          output: "trivy-results.sarif"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: "trivy-results.sarif"
+          format: "table"
 
       # - name: Push image to amazon ECR
       #   env:
