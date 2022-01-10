@@ -1,11 +1,11 @@
 name: Django Tests Automation with GitHub Action on AWS
 
 on:
-  workflow_dispatch:
-  # push:
-  #   branches:
-  #     - main
-  #     - master
+  # workflow_dispatch:
+  push:
+    branches:
+      - main
+      # - master
 
   # pull_request:
   #   types: [opened, synchronize, reopened]
@@ -50,12 +50,8 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: rest-api
-          IMAGE_TAG: ${{ github.sha }}
         with:
-          image-ref: "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          image-ref: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           exit-code: "1"
           ignore-unfixed: true
           vuln-type: "os,library"
@@ -63,6 +59,10 @@ jobs:
           format: "template"
           template: "@/contrib/sarif.tpl"
           output: "trivy-results.sarif"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: rest-api
+          IMAGE_TAG: ${{ github.sha }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
